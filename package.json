@@ -1,0 +1,23 @@
+{
+  "name": "workshop-hsa",
+  "version": "0.0.1",
+  "description": "This is the repository for the workshop \"Vom Aah zum Wow\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "servor . index.html 8080 --reload --browse",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Creative-Code-Storm/workshop-hsa.git"
+  },
+  "author": "Tim Zeidler <tz@iconstorm.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Creative-Code-Storm/workshop-hsa/issues"
+  },
+  "homepage": "https://github.com/Creative-Code-Storm/workshop-hsa#readme",
+  "devDependencies": {
+    "servor": "^4.0.2"
+  }
+}
