@@ -38,7 +38,7 @@ If the installation was successful, you should be able to run the following comm
 
     $ git clone https://github.com/Creative-Code-Storm/workshop-hsa.git
     $ cd workshop-hsa
-    $ npm run i
+    $ npm install
 
 ## Running the project
 
