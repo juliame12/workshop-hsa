@@ -34,6 +34,8 @@ If the installation was successful, you should be able to run the following comm
 
 ## Install
 
+### Fork this Repository, then:
+
     $ git clone https://github.com/Creative-Code-Storm/workshop-hsa.git
     $ cd workshop-hsa
     $ npm run i
@@ -41,3 +43,9 @@ If the installation was successful, you should be able to run the following comm
 ## Running the project
 
     $ npm run start
+
+## Deployment
+
+Please use [Github-Pages](https://pages.github.com/) to Showcase your project.
+
+As an alternative you can use [Netlify](https://www.netlify.com/)
