@@ -38,7 +38,7 @@ function draw() {
     //textSize(32);
     //textAlign(CENTER, CENTER);
     //text(label, width / 2, height / 2);
-    magenta = getRandomMagenta();
+    magenta = getRandomBlue();
     fill(color(magenta));
     noStroke();
 
@@ -83,9 +83,9 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getRandomMagenta() {
-    let saturation = getRandomInt(80, 100);
-    let lightness = getRandomInt(20, 40);
-    let randomColor = `hsl( 319, ${saturation}%, ${lightness}% )`;
+function getRandomBlue() {
+    let saturation = getRandomInt(60, 100);
+    let lightness = getRandomInt(20, 60);
+    let randomColor = `hsl( 207, ${saturation}%, ${lightness}% )`;
     return randomColor;
 }
