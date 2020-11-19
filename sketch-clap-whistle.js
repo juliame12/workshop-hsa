@@ -1,0 +1,91 @@
+// Global variable to store the classifier
+let classifier;
+
+// Label
+let label;
+let labelDiv;
+
+let confidence;
+let confidenceDiv;
+
+let balloon = false;
+let count = 0;
+
+let magenta;
+
+// Teachable Machine model URL:
+let soundModel = 'https://teachablemachine.withgoogle.com/models/9bLStBUUZ/';
+
+
+function preload() {
+    // Load the Teachable Machine model
+    classifier = ml5.soundClassifier(soundModel + 'model.json');
+}
+
+function setup() {
+    createCanvas(windowWidth * 0.66, windowHeight * 0.66);
+    background(0);
+    // Create 'label' and 'confidence' div to hold results
+    labelDiv = createDiv('Label: ...');
+    confidenceDiv = createDiv('Confidence: ...');
+    // Start classifying
+    // The sound model will continuously listen to the microphone
+    classifier.classify(gotResult);
+}
+
+function draw() {
+    // Draw the label in the canvas
+    //textSize(32);
+    //textAlign(CENTER, CENTER);
+    //text(label, width / 2, height / 2);
+    magenta = getRandomMagenta();
+    fill(color(magenta));
+    noStroke();
+
+    if (label === "Whistles" && confidence > 0.9) {
+        balloon = true;
+    }
+
+    if (balloon) {
+        let d = getRandomInt(48, 72);
+        ellipse(getRandomInt(0, width), getRandomInt(0, height), d, d);
+    }
+
+    if (label === "Claps" && confidence > 0.9) {
+        clear();
+        background(0);
+    }
+
+    balloon = false;
+}
+
+
+// The model recognizing a sound will trigger this event
+function gotResult(error, results) {
+    if (error) {
+        console.error(error);
+        return;
+    }
+    // The results are in an array ordered by confidence.
+    // console.log(results[0]);
+
+    // Show the first label and confidence
+    label = results[0].label;
+    confidence = results[0].confidence;
+    labelDiv.html('Label: ' + label);
+    confidenceDiv.html('Confidence: ' + nf(confidence, 0, 2)); // Round the confidence to 0.01
+}
+
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomMagenta() {
+    let saturation = getRandomInt(80, 100);
+    let lightness = getRandomInt(20, 40);
+    let randomColor = `hsl( 319, ${saturation}%, ${lightness}% )`;
+    return randomColor;
+}
