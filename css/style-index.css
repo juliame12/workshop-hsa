@@ -34,3 +34,7 @@ body {
     align-items: center;
     margin: 16px;
 }
+
+img {
+    border: 1px solid #303030;
+}
