@@ -27,12 +27,12 @@ function setup() {
 }
 
 function draw() {
-    background(0);
+    background(255);
     // Draw the video
     image(flippedVideo, 0, 0);
 
     // Draw the label
-    fill(255);
+    fill(48, 48, 48);
     textSize(16);
     textAlign(CENTER);
     text(label, width / 2, height - 4);

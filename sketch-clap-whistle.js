@@ -24,10 +24,9 @@ function preload() {
 
 function setup() {
     createCanvas(windowWidth * 0.66, windowHeight * 0.66);
-    background(0);
     // Create 'label' and 'confidence' div to hold results
-    labelDiv = createDiv('Label: ...');
-    confidenceDiv = createDiv('Confidence: ...');
+    labelDiv = createDiv('Listening');
+    confidenceDiv = createDiv('...');
     // Start classifying
     // The sound model will continuously listen to the microphone
     classifier.classify(gotResult);
@@ -47,13 +46,13 @@ function draw() {
     }
 
     if (balloon) {
-        let d = getRandomInt(48, 72);
+        let d = getRandomInt(50, 100);
         ellipse(getRandomInt(0, width), getRandomInt(0, height), d, d);
     }
 
     if (label === "Claps" && confidence > 0.9) {
         clear();
-        background(0);
+        background(255);
     }
 
     balloon = false;
@@ -72,8 +71,14 @@ function gotResult(error, results) {
     // Show the first label and confidence
     label = results[0].label;
     confidence = results[0].confidence;
-    labelDiv.html('Label: ' + label);
-    confidenceDiv.html('Confidence: ' + nf(confidence, 0, 2)); // Round the confidence to 0.01
+
+    if (label === "Hintergrundgeräusche") {
+        labelDiv.html('Listening');
+        confidenceDiv.html('...');
+    } else {
+        labelDiv.html('' + label);
+        confidenceDiv.html('' + nf(confidence, 0, 2)); // Round the confidence to 0.01
+    }
 }
 
 
@@ -86,6 +91,6 @@ function getRandomInt(min, max) {
 function getRandomBlue() {
     let saturation = getRandomInt(60, 100);
     let lightness = getRandomInt(20, 60);
-    let randomColor = `hsl( 207, ${saturation}%, ${lightness}% )`;
+    let randomColor = `hsla( 207, ${saturation}%, ${lightness}%, 0.9 )`;
     return randomColor;
 }
